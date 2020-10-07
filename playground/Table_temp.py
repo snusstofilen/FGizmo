@@ -1,11 +1,16 @@
 from kivymd.app import MDApp
 from kivymd.uix.datatables import MDDataTable
-from kivy.uix.widget import Widget
+from kivymd.uix.gridlayout import GridLayout
+from kivymd.uix.screen import Screen
+from kivymd.uix.button import Button
+
 from kivy.metrics import dp
 
-class Table(Widget):
+class Table(GridLayout):
 
     def __init__(self):
+        super().__init__(cols=1)
+
         self.table = MDDataTable(use_pagination=True,
             column_data=[
                 ("Name", dp(30)),
@@ -17,16 +22,21 @@ class Table(Widget):
                 (f"{i + 1}", f"{(i+1) * 2}", "2020-09-"+f"{i+1}".rjust(2, '0'), "Pastry", "Debit")
                 for i in range(30)])
 
+        self.add_widget(self.table)
+        self.add_widget(Button(text="Remove"))
+
         self.table.bind(on_row_press=self.on_row_press)
 
     def on_row_press(self, instance_table, instance_row):
         print(instance_table, instance_row)
 
-class TableApp(MDApp):
+class TestApp(MDApp):
 
     def build(self):
         self.datatable = Table()
-        return self.datatable
+        self.screen = Screen()
+        self.screen.add_widget(self.datatable)
+        return self.screen
 
 table = TableApp()
 table.run()
