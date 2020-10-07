@@ -38,5 +38,5 @@ class TestApp(MDApp):
         self.screen.add_widget(self.datatable)
         return self.screen
 
-table = TableApp()
+table = TestApp()
 table.run()
