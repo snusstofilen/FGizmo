@@ -3,7 +3,8 @@ from kivymd.uix.datatables import MDDataTable
 from kivymd.uix.gridlayout import GridLayout
 from kivymd.uix.screen import Screen
 from kivymd.uix.button import Button
-
+from kivy.config import Config
+Config.set('input', 'mouse', 'mouse,disable_multitouch')
 from kivy.metrics import dp
 
 class Table(GridLayout):
@@ -23,12 +24,21 @@ class Table(GridLayout):
                 for i in range(30)])
 
         self.add_widget(self.table)
-        self.add_widget(Button(text="Remove"))
+        self.button = Button(text="Remove")
+        self.add_widget(self.button)
 
+        self.button.bind(on_touch_down=self.on_pressed)
+        self.table.bind(on_touch_down=self.on_pressed)
         self.table.bind(on_row_press=self.on_row_press)
+        # self.remove_button.bind(on_press=callback)
 
     def on_row_press(self, instance_table, instance_row):
         print(instance_table, instance_row)
+
+    def on_pressed(self, instance, touch):
+        if touch.button == 'right':
+            print('right mouse button clicked!')
+
 
 class TestApp(MDApp):
 
