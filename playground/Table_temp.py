@@ -4,7 +4,12 @@ from kivymd.uix.gridlayout import GridLayout
 from kivymd.uix.screen import Screen
 from kivymd.uix.button import Button
 
+import pdb
+
 from kivy.metrics import dp
+
+from kivy.config import Config
+Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
 class Table(GridLayout):
 
