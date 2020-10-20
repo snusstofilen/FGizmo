@@ -3,9 +3,18 @@ from kivymd.uix.datatables import MDDataTable
 from kivymd.uix.gridlayout import GridLayout
 from kivymd.uix.screen import Screen
 from kivymd.uix.button import Button
+<<<<<<< HEAD
+
+import pdb
+
+=======
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,disable_multitouch')
+>>>>>>> 5032b84cd3ded91893e6817c619ceda3806a3ed7
 from kivy.metrics import dp
+
+from kivy.config import Config
+Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
 class Table(GridLayout):
 
